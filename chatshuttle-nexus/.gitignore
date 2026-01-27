@@ -1,0 +1,16 @@
+# Dependencies
+node_modules/
+
+# Build Output
+dist/
+
+# Local Credentials (NEVER COMMIT)
+.chatshuttle/
+token.json
+credentials.json
+
+# Environment
+.env
+
+# Logs
+npm-debug.log*

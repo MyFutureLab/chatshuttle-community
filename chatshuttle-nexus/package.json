@@ -1,0 +1,29 @@
+{
+    "name": "@chatshuttle/nexus",
+    "version": "1.0.0",
+    "description": "Universal Memory Bridge for AI Agents",
+    "type": "module",
+    "main": "dist/cli.js",
+    "bin": {
+        "nexus": "./bin/nexus"
+    },
+    "scripts": {
+        "postinstall": "node scripts/postinstall.mjs",
+        "build": "tsc",
+        "start": "node --experimental-wasm-modules dist/cli.js",
+        "search": "node --experimental-wasm-modules dist/cli.js search",
+        "auth": "node --experimental-wasm-modules dist/cli.js auth"
+    },
+    "dependencies": {
+        "commander": "^11.1.0",
+        "fuse.js": "^7.0.0",
+        "google-auth-library": "^9.4.0",
+        "googleapis": "^129.0.0",
+        "voy-search": "^0.6.3",
+        "@xenova/transformers": "^2.14.0"
+    },
+    "devDependencies": {
+        "@types/node": "^20.10.0",
+        "typescript": "^5.3.0"
+    }
+}
