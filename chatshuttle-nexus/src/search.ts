@@ -21,7 +21,9 @@ interface SearchResult {
     score: number;
     title: string;
     text: string;
+    convId: string; // Links to full conversation in Drive
     source: 'vector' | 'keyword' | 'hybrid';
+    fullContextHint: string; // Tells AI agent where to find full context
 }
 
 export class SearchService {
@@ -103,8 +105,10 @@ export class SearchService {
                 id,
                 title: res.item.title,
                 text: res.item.text,
+                convId: res.item.convId || '',
                 score: 0, // Will update later
-                source: 'keyword'
+                source: 'keyword',
+                fullContextHint: `Full conversation available in Google Drive: ChatShuttle_Memories/Conversations/`
             });
         });
 
@@ -131,8 +135,10 @@ export class SearchService {
                                 id,
                                 title: meta.title,
                                 text: meta.text,
+                                convId: meta.convId || '',
                                 score: 0,
-                                source: 'vector'
+                                source: 'vector',
+                                fullContextHint: `Full conversation available in Google Drive: ChatShuttle_Memories/Conversations/`
                             });
                         } else {
                             // Upgrade source to hybrid if found in both
