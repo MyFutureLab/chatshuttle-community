@@ -21,36 +21,58 @@ export class DriveService {
      * In PROD, we should check `modifiedTime`.
      */
     async syncFiles() {
-        // Ensure cache dir
+        // Ensure cache dir exists
         if (!fs.existsSync(CACHE_DIR)) {
             fs.mkdirSync(CACHE_DIR, { recursive: true });
         }
 
-        const drive = await this.getDriveClient();
+        try {
+            console.log('[Nexus] Attempting to sync with Google Drive...');
+            const drive = await this.getDriveClient();
 
-        // 1. Find the Folders
-        // We look for 'ChatShuttle_Memories/_VectorIndex'
-        const qFolder = "mimeType = 'application/vnd.google-apps.folder' and name = 'ChatShuttle_Memories' and trashed = false";
-        const folderRes = await drive.files.list({ q: qFolder });
+            // 1. Find the Folders
+            // We look for 'ChatShuttle_Memories/_VectorIndex'
+            const qFolder = "mimeType = 'application/vnd.google-apps.folder' and name = 'ChatShuttle_Memories' and trashed = false";
+            const folderRes = await drive.files.list({ q: qFolder });
 
-        if (!folderRes.data.files || folderRes.data.files.length === 0) {
-            throw new Error('ChatShuttle folder not found in Drive. Please use the Extension to sync first.');
+            if (!folderRes.data.files || folderRes.data.files.length === 0) {
+                // Determine if we assume this is a fatal error or just not set up yet
+                throw new Error('ChatShuttle folder not found in Drive.');
+            }
+            const rootId = folderRes.data.files[0].id;
+
+            const qIndexFolder = `mimeType = 'application/vnd.google-apps.folder' and name = '_VectorIndex' and '${rootId}' in parents and trashed = false`;
+            const indexFolderRes = await drive.files.list({ q: qIndexFolder });
+
+            if (!indexFolderRes.data.files || indexFolderRes.data.files.length === 0) {
+                throw new Error('Vector Index folder not found locally or remotely.');
+            }
+            const indexFolderId = indexFolderRes.data.files[0].id; // Type assertion
+
+            // 2. Download index.voy
+            await this.downloadFileIfNeeded(drive, indexFolderId, 'index.voy', INDEX_FILE);
+
+            // 3. Download metadata.json
+            await this.downloadFileIfNeeded(drive, indexFolderId, 'metadata.json', METADATA_FILE);
+
+            console.log('[Nexus] Drive sync successful.');
+
+        } catch (error: any) {
+            console.warn(`[Nexus] Drive sync failed: ${error.message}`);
+
+            // FALLBACK: Check if we have local files manually placed (Workaround Mode)
+            const hasIndex = fs.existsSync(INDEX_FILE);
+            const hasMetadata = fs.existsSync(METADATA_FILE);
+
+            if (hasIndex && hasMetadata) {
+                console.log('[Nexus] Falling back to local cache files (Offline/Workaround Mode).');
+                return; // Graceful degradation
+            }
+
+            // If we don't have local files either, we must escalate the error
+            console.error('[Nexus] No local files found to fallback on.');
+            throw new Error(`Failed to sync from Drive and no local cache found. Original error: ${error.message}`);
         }
-        const rootId = folderRes.data.files[0].id;
-
-        const qIndexFolder = `mimeType = 'application/vnd.google-apps.folder' and name = '_VectorIndex' and '${rootId}' in parents and trashed = false`;
-        const indexFolderRes = await drive.files.list({ q: qIndexFolder });
-
-        if (!indexFolderRes.data.files || indexFolderRes.data.files.length === 0) {
-            throw new Error('Vector Index folder not found. Has the Extension synced yet?');
-        }
-        const indexFolderId = indexFolderRes.data.files[0].id; // Type assertion
-
-        // 2. Download index.voy
-        await this.downloadFileIfNeeded(drive, indexFolderId, 'index.voy', INDEX_FILE);
-
-        // 3. Download metadata.json
-        await this.downloadFileIfNeeded(drive, indexFolderId, 'metadata.json', METADATA_FILE);
     }
 
     private async downloadFileIfNeeded(drive: any, folderId: any, name: string, destPath: string) {
