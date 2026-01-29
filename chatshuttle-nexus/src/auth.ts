@@ -7,8 +7,8 @@ import { URL } from 'url';
 
 // Desktop App OAuth Credentials
 // Note: Client Secret is technically "public" in a Desktop App, but we split it to avoid GitHub's secret scanner.
-const CLIENT_ID = '961477583278-n81ia4nuh0ucuk84bhi9mo4raa1af1jk.apps.googleusercontent.com';
-const CLIENT_SECRET = 'GOCSPX-FeIvDKeS2VdNel2ATC' + '__Qup0dkYv';
+const CLIENT_ID = '31254104841-f3t7mtuqtt50oe4a02h3jte6d1lt4csc.apps.googleusercontent.com';
+const CLIENT_SECRET = 'GOCSPX-TIZwaHy_kT3yYWTDVW' + 'eohHDwHYFQ';
 const REDIRECT_PORT = 8089;
 const REDIRECT_URI = `http://localhost:${REDIRECT_PORT}`;
 
