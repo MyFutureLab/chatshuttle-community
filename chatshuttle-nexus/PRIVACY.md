@@ -1,5 +1,5 @@
 # Privacy Policy for ChatShuttle Nexus
-**Effective Date:** January 28, 2026
+**Effective Date:** January 30, 2026
 
 ## Introduction
 ChatShuttle Nexus ("Nexus") is an open-source Desktop Skill designed to work as a companion to the ChatShuttle Chrome Extension. This policy specifically covers the privacy practices of the Nexus application.
