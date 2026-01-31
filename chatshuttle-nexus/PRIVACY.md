@@ -42,7 +42,7 @@ We employ industry-standard security measures to protect your information:
 ## 5. Data Retention and Deletion
 You retain full control over your data lifecycle:
 - **Retention**: Local cache files exist on your device only as long as you use the application. The master copies in Google Drive are retained according to your own Google Drive settings.
-- **Deletion**: You can delete the local data at any time by uninstalling the application or deleting the `~/.chatshuttle` folder. This action immediately removes all locally cached data. You can delete the master archives in Google Drive by removing the `ChatShuttle_Memories` folder.
+- **Deletion**: You can delete the local data at any time by manually removing the cache folder (`~/.chatshuttle`) on your computer. You can also delete the master archives in Google Drive by removing the `ChatShuttle_Memories` folder.
 
 ## 6. Data Sharing
 We do not sell, trade, or share your Google User Data with third parties.
