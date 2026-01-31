@@ -34,11 +34,21 @@ Your data is stored in two locations:
 
 We do NOT operate a database that stores your chat content or personal information.
 
-## 4. Data Sharing
+## 4. Data Protection
+We employ industry-standard security measures to protect your information:
+- **Encryption in Transit**: All data transferred between Google Drive servers and your local machine is encrypted using Transport Layer Security (HTTPS/TLS).
+- **Local Security**: Detailed chat history is stored only on your local file system, protected by your operating system's user permissions. We do not maintain any external databases of your sensitive information.
+
+## 5. Data Retention and Deletion
+You retain full control over your data lifecycle:
+- **Retention**: Local cache files exist on your device only as long as you use the application. The master copies in Google Drive are retained according to your own Google Drive settings.
+- **Deletion**: You can delete the local data at any time by uninstalling the application or deleting the `~/.chatshuttle` folder. This action immediately removes all locally cached data. You can delete the master archives in Google Drive by removing the `ChatShuttle_Memories` folder.
+
+## 6. Data Sharing
 We do not sell, trade, or share your Google User Data with third parties.
 There are no third-party services involved in the core search loop of this application.
 
-## 5. AI Training
+## 7. AI Training
 We do NOT use your data to train AI models. Your conversations remain private and are only formatted for your own personal use with local AI agents.
 
 ## Contact
