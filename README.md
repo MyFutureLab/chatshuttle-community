@@ -1,6 +1,6 @@
 # ChatShuttle: New AI, Same Thread.
 
-[![Install Chrome Extension](https://img.shields.io/badge/Chrome_Web_Store-Install_Free-blue?style=for-the-badge&logo=googlechrome)](https://chrome.google.com/webstore/detail/chatshuttle/EXTENSION_ID)
+[![Install Chrome Extension](https://img.shields.io/badge/Chrome_Web_Store-Install_Free-blue?style=for-the-badge&logo=googlechrome)](https://chrome.google.com/webstore/detail/ogjcfapagafodejpadpopimhhmcdhnpa)
 [![Buy Pro](https://img.shields.io/badge/Lemon_Squeezy-Buy_Pro-FDBF11?style=for-the-badge&logo=lemonsqueezy)](https://chatshuttle.lemonsqueezy.com/checkout/buy/73fa87ff-cf48-49a4-9ede-3c4c2f806f95?checkout%5Bdiscount_code%5D=40OFF)
 
 > **Shuttle your full AI chat history (text + images) across web AIs. Keep chatting, not starting over.**
@@ -21,7 +21,7 @@ Most tools are summary-only or plain text. ChatShuttle keeps images and context 
 
 ## Installation
 
-1. **[Install from Chrome Web Store](https://chrome.google.com/webstore/detail/chatshuttle/EXTENSION_ID)** (Recommended)
+1. **[Install from Chrome Web Store](https://chrome.google.com/webstore/detail/ogjcfapagafodejpadpopimhhmcdhnpa)** (Recommended)
 2. Open the side panel and sign in with Google Drive.
 3. Import your first chat export!
 
